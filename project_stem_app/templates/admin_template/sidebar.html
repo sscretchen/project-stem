@@ -1,0 +1,145 @@
+{% load static %}
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'index' %}" class="brand-link">
+    <img src="{% static 'dist/img/leaves.svg' %}" alt="Logo" class="brand-image img-circle elevation-3">
+    <span class="brand-text font-weight-light">Project STEM</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a href="#" class="d-block">Admin - ({{ user.username }})</a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+        <li class="nav-item has-treeview menu-open">
+          <a href="{% url 'admin_home' %}" class="nav-link active">
+            <i class="fas fa-home"></i>
+            <p>
+              Home
+            </p>
+          </a>
+        </li>
+        <br>
+        <li class="nav-header mb-2"><h6><i class="fas fa-cog"></i> ADD TO SYSTEM</h6></li>
+        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <li class="nav-item">
+          <a href="{% url 'add_staff' %}" class="nav-link">
+            <p>
+              Add Staff Member
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Add Student
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Add Courses
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Add Subject
+            </p>
+          </a>
+        </li>
+        <li class="nav-header mb-2"><h6><i class="fas fa-cog"></i> MANAGE SYSTEM</h6></li>
+        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Manage Staff Members
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Manage Students
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Manage Courses
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Manage Subjects
+            </p>
+          </a>
+        </li>
+        <li class="nav-header mb-2"><h6><i class="fas fa-clipboard"></i> ATTENDANCE</h6></li>
+        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              View Attendance
+            </p>
+          </a>
+        </li>
+        <li class="nav-header mb-2"><h6><i class="fas fa-comments"></i> FEEDBACK</h6></li>
+        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Student Feedback
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Staff Feedback
+            </p>
+          </a>
+        </li>
+        <li class="nav-header mb-2"><h6><i class="fas fa-clipboard-list"></i> LEAVE REPORTS</h6></li>
+        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Student Leave
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Staff Leave
+            </p>
+          </a>
+        </li>
+
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

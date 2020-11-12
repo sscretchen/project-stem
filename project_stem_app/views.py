@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from project_stem_app.EmailBackEnd import EmailBackEnd
+from django.contrib import messages
 import datetime
 
 # Create your views here.
@@ -23,9 +24,10 @@ def login_user(request):
         user = EmailBackEnd.authenticate(request, username=request.POST.get("email"), password=request.POST.get("password"))
         if user != None:
             login(request, user)
-            return HttpResponse("Email: " + request.POST.get("email") + "Password: " + request.POST.get("password"))
+            return HttpResponseRedirect('admin_home')
         else:
-            return HttpResponse("Invalid Login")
+            messages.error(request,"Invalid login details")
+            return HttpResponseRedirect("/")
 
 
 def UserDetails(request):
