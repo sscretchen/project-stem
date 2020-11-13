@@ -1,0 +1,78 @@
+{% extends 'admin_template/admin_base.html' %}
+{% load static %}
+{% block title %}Manage Students{% endblock %}
+{% block page_title %}Manage Students{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Student Details</h3>
+
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead class="thead-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Gender</th>
+                  <th>Profile Pic</th>
+                  <th>Start Year</th>
+                  <th>End Year</th>
+                  <th>Course</th>
+                  <th>Last Login</th>
+                  <th>Date Joined</th>
+                  <th>Edit Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for student in students %}
+                <tr>
+                  <td>{{ student.admin.id }}</td>
+                  <td>{{ student.admin.first_name }}</td>
+                  <td>{{ student.admin.last_name }}</td>
+                  <td>{{ student.admin.username }}</td>
+                  <td>{{ student.admin.email }}</td>
+                  <td>{{ student.address }}</td>
+                  <td>{{ student.gender }}</td>
+                  <td>{{ student.profile_pic }}</td>
+                  <td>{{ student.session_start_year }}</td>
+                  <td>{{ student.session_end_year }}</td>
+                  <td>{{ student.course_id.course_name }}</td>
+                  <td>{{ student.admin.last_login }}</td>
+                  <td>{{ student.admin.date_joined }}</td>
+                  <td><a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

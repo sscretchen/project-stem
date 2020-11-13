@@ -16,7 +16,7 @@
         <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Admin - ({{ user.username }})</a>
+        <a href="{% url 'admin_home' %}" class="d-block">Admin - ({{ user.username }})</a>
       </div>
     </div>
 
@@ -33,9 +33,10 @@
         </li>
         <br>
         <hr style="width:90%;text-align:left;margin-top:0" color="white">
-        <li class="nav-header"><h6><i class="fas fa-cog"></i> ADD TO SYSTEM</h6></li>
+        <li class="nav-header"><h6>ADD TO SYSTEM</h6></li>
         <li class="nav-item">
           <a href="{% url 'add_staff' %}" class="nav-link">
+            <i class="fas fa-chalkboard-teacher"></i>
             <p>
               Add Staff Member
             </p>
@@ -43,6 +44,7 @@
         </li>
         <li class="nav-item">
           <a href="{% url 'add_student' %}" class="nav-link">
+            <i class="fas fa-book-reader"></i>
             <p>
               Add Student
             </p>
@@ -50,13 +52,15 @@
         </li>
         <li class="nav-item">
           <a href="{% url 'add_course' %}" class="nav-link">
+            <i class="fas fa-school"></i>
             <p>
               Add Course
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'add_subject' %}" class="nav-link">
+            <i class="fas fa-square-root-alt"></i>
             <p>
               Add Subject
             </p>
@@ -64,30 +68,34 @@
         </li>
         <br>
         <hr style="width:90%;text-align:left;margin-top:0" color="white">
-        <li class="nav-header"><h6><i class="fas fa-cog"></i> MANAGE SYSTEM</h6></li>
+        <li class="nav-header"><h6>MANAGE SYSTEM</h6></li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'manage_staff' %}" class="nav-link">
+            <i class="fas fa-chalkboard-teacher"></i>
             <p>
               Manage Staff Members
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'manage_students' %}" class="nav-link">
+            <i class="fas fa-book-reader"></i>
             <p>
               Manage Students
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'manage_courses' %}" class="nav-link">
+            <i class="fas fa-school"></i>
             <p>
               Manage Courses
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'manage_subjects' %}" class="nav-link">
+            <i class="fas fa-square-root-alt"></i>
             <p>
               Manage Subjects
             </p>
@@ -95,9 +103,10 @@
         </li>
         <br>
         <hr style="width:90%;text-align:left;margin-top:0" color="white">
-        <li class="nav-header"><h6><i class="fas fa-clipboard"></i> ATTENDANCE</h6></li>
+        <li class="nav-header"><h6>ATTENDANCE</h6></li>
         <li class="nav-item">
           <a href="#" class="nav-link">
+            <i class="fas fa-clipboard"></i>
             <p>
               View Attendance
             </p>
@@ -105,35 +114,39 @@
         </li>
         <br>
         <hr style="width:90%;text-align:left;margin-top:0" color="white">
-        <li class="nav-header mb-2"><h6><i class="fas fa-comments"></i> FEEDBACK</h6></li>
+        <li class="nav-header mb-2"><h6>FEEDBACK</h6></li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <p>
-              Student Feedback
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+            <i class="fas fa-comment-dots"></i>
             <p>
               Staff Feedback
             </p>
           </a>
         </li>
-        <br>
-        <hr style="width:90%;text-align:left;margin-top:0" color="white">
-        <li class="nav-header"><h6><i class="fas fa-clipboard-list"></i> LEAVE REPORTS</h6></li>
         <li class="nav-item">
           <a href="#" class="nav-link">
+            <i class="fas fa-comment-dots"></i>
             <p>
-              Student Leave
+              Student Feedback
+            </p>
+          </a>
+        </li>
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6>LEAVE REPORTS</h6></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fas fa-door-open"></i>
+            <p>
+              Staff Leave
             </p>
           </a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
+            <i class="fas fa-door-open"></i>
             <p>
-              Staff Leave
+              Student Leave
             </p>
           </a>
         </li>

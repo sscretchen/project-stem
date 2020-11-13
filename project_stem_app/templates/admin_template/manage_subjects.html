@@ -1,0 +1,62 @@
+{% extends 'admin_template/admin_base.html' %}
+{% load static %}
+{% block title %}Manage Subjects{% endblock %}
+{% block page_title %}Manage Subjects{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Subject Details</h3>
+
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead class="thead-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Subject Name</th>
+                  <th>Course Name</th>
+                  <th>Course ID</th>
+                  <th>Teacher</th>
+                  <th>Edit Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for subject in subjects %}
+                <tr>
+                  <td>{{ subject.id }}</td>
+                  <td>{{ subject.subject_name }}</td>
+                  <td>{{ subject.course_id.course_name }}</td>
+                  <td>{{ subject.course_id.id }}</td>
+                  <td>{{ subject.staff_id.last_name }}, {{ subject.staff_id.first_name }}</td>
+                  <td><a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

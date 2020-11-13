@@ -17,4 +17,11 @@ urlpatterns = [
     path('save_student', save_student, name="save_student"),
     path('add_course', add_course, name="add_course"),
     path('save_course', save_course, name="save_course"),
+    path('add_subject', add_subject, name="add_subject"),
+    path('save_subject', save_subject, name="save_subject"),
+    path('manage_staff', manage_staff, name="manage_staff"),
+    path('manage_students', manage_students, name="manage_students"),
+    path('manage_courses', manage_courses, name="manage_courses"),
+    path('manage_subjects', manage_subjects, name="manage_subjects"),
+    # Custom page URLs
 ]

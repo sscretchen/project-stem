@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
-from project_stem_app.models import Staff, CustomUser, Courses
+from project_stem_app.models import Staff, CustomUser, Courses, Subjects, Students
 
 
 def admin_home(request):
@@ -109,3 +109,73 @@ def save_student(request):
         except:
             messages.error(request, "Failed to Add Student. Please try again")
             return HttpResponseRedirect("add_student")
+
+
+def add_subject(request):
+    courses = Courses.objects.all()
+    staff = CustomUser.objects.filter(user_type=2)
+    context = {
+        'courses': courses,
+        'staff': staff,
+    }
+    return render(request, 'admin_template/add_subject.html', context)
+
+
+def save_subject(request):
+    if request.method != "POST":
+        return HttpResponse("Method Not Allowed")
+    else:
+        subject_name = request.POST.get("subject_name")
+        course_id = request.POST.get("course")
+        course = Courses.objects.get(id=course_id)
+        staff_id = request.POST.get("staff")
+        staff = CustomUser.objects.get(id=staff_id)
+
+        try:
+            subject = Subjects(
+                subject_name = subject_name,
+                course_id = course,
+                staff_id = staff
+                )
+            subject.save()
+            messages.success(request, "Successfully Added Subject")
+            return HttpResponseRedirect("add_subject")
+        except:
+            messages.error(request, "Failed to Add Subject. Please try again")
+            return HttpResponseRedirect("add_subject")
+
+
+def manage_staff(request):
+    staff = Staff.objects.all()
+    context = {
+        'staff': staff,
+    }
+    return render(request, 'admin_template/manage_staff.html', context)
+
+
+def manage_students(request):
+    students = Students.objects.all()
+    context = {
+        'students': students,
+    }
+    return render(request, 'admin_template/manage_students.html', context)
+
+
+def manage_courses(request):
+    courses = Courses.objects.all()
+    context = {
+        'courses': courses,
+    }
+    return render(request, 'admin_template/manage_courses.html', context)
+    subjects
+
+def manage_subjects(request):
+    subjects = Subjects.objects.all()
+    staff = Staff.objects.all()
+    courses = Courses.objects.all()
+    context = {
+        'subjects': subjects,
+        'courses': courses,
+        'staff': staff,
+    }
+    return render(request, 'admin_template/manage_subjects.html', context)

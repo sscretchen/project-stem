@@ -1,0 +1,68 @@
+{% extends 'admin_template/admin_base.html' %}
+{% load static %}
+{% block title %}Manage Staff{% endblock %}
+{% block page_title %}Manage Staff{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Staff Details</h3>
+
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead class="thead-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Last Login</th>
+                  <th>Date Joined</th>
+                  <th>Edit Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for staff_member in staff %}
+                <tr>
+                  <td>{{ staff_member.admin.id }}</td>
+                  <td>{{ staff_member.admin.first_name }}</td>
+                  <td>{{ staff_member.admin.last_name }}</td>
+                  <td>{{ staff_member.admin.username }}</td>
+                  <td>{{ staff_member.admin.email }}</td>
+                  <td>{{ staff_member.address }}</td>
+                  <td>{{ staff_member.admin.last_login }}</td>
+                  <td>{{ staff_member.admin.date_joined }}</td>
+                  <td><a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
