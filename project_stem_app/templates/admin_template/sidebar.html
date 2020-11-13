@@ -23,8 +23,6 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview menu-open">
           <a href="{% url 'admin_home' %}" class="nav-link active">
             <i class="fas fa-home"></i>
@@ -34,8 +32,8 @@
           </a>
         </li>
         <br>
-        <li class="nav-header mb-2"><h6><i class="fas fa-cog"></i> ADD TO SYSTEM</h6></li>
-        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6><i class="fas fa-cog"></i> ADD TO SYSTEM</h6></li>
         <li class="nav-item">
           <a href="{% url 'add_staff' %}" class="nav-link">
             <p>
@@ -44,16 +42,16 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'add_student' %}" class="nav-link">
             <p>
               Add Student
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'add_course' %}" class="nav-link">
             <p>
-              Add Courses
+              Add Course
             </p>
           </a>
         </li>
@@ -64,8 +62,9 @@
             </p>
           </a>
         </li>
-        <li class="nav-header mb-2"><h6><i class="fas fa-cog"></i> MANAGE SYSTEM</h6></li>
-        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6><i class="fas fa-cog"></i> MANAGE SYSTEM</h6></li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <p>
@@ -94,8 +93,9 @@
             </p>
           </a>
         </li>
-        <li class="nav-header mb-2"><h6><i class="fas fa-clipboard"></i> ATTENDANCE</h6></li>
-        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6><i class="fas fa-clipboard"></i> ATTENDANCE</h6></li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <p>
@@ -103,8 +103,9 @@
             </p>
           </a>
         </li>
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
         <li class="nav-header mb-2"><h6><i class="fas fa-comments"></i> FEEDBACK</h6></li>
-        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
         <li class="nav-item">
           <a href="#" class="nav-link">
             <p>
@@ -119,8 +120,9 @@
             </p>
           </a>
         </li>
-        <li class="nav-header mb-2"><h6><i class="fas fa-clipboard-list"></i> LEAVE REPORTS</h6></li>
-        <hr style="width:90%;text-align:left;margin-top:0" color="grey">
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6><i class="fas fa-clipboard-list"></i> LEAVE REPORTS</h6></li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <p>
@@ -135,7 +137,7 @@
             </p>
           </a>
         </li>
-
+        <br>
 
       </ul>
     </nav>

@@ -48,7 +48,7 @@ class Subjects(models.Model):
     """Main model for creating subjects"""
     id = models.AutoField(primary_key=True)
     subject_name = models.CharField(max_length=255)
-    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE, default=1)
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -180,8 +180,16 @@ def create_user_profile(sender,instance,created,**kwargs):
         if instance.user_type==2:
             Staff.objects.create(admin=instance,address="")
         if instance.user_type==3:
-            Student.objects.create(admin=instance)
-            # ,course_id=Courses.objects.get(id=1),session_year_id=SessionYearModel.object.get(id=1),address="",profile_pic="",gender=""
+            Students.objects.create(
+                admin=instance,
+                course_id=Courses.objects.get(id=1),
+                session_start_year="2020-01-01",
+                session_end_year="2021-01-01",
+                address="",
+                profile_pic="",
+                gender="",
+                )
+
 
 @receiver(post_save,sender=CustomUser)
 def save_user_profile(sender,instance,**kwargs):

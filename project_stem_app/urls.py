@@ -13,4 +13,8 @@ urlpatterns = [
     path('admin_home', admin_home, name="admin_home"),
     path('add_staff', add_staff, name="add_staff"),
     path('save_staff', save_staff, name="save_staff"),
+    path('add_student', add_student, name="add_student"),
+    path('save_student', save_student, name="save_student"),
+    path('add_course', add_course, name="add_course"),
+    path('save_course', save_course, name="save_course"),
 ]
