@@ -179,3 +179,88 @@ def manage_subjects(request):
         'staff': staff,
     }
     return render(request, 'admin_template/manage_subjects.html', context)
+
+
+def edit_staff(request, staff_id):
+    staff = Staff.objects.get(admin=staff_id)
+    context ={
+        'staff': staff,
+    }
+    return render(request, 'admin_template/edit_staff.html', context)
+
+
+def save_staff_edits(request):
+    if request.method != "POST":
+        return HttpResponse("Method Not Allowed")
+    else:
+        staff_id = request.POST.get("staff_id")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        username = request.POST.get("username")
+        address = request.POST.get("address")
+        try:
+            user = CustomUser.objects.get(id=staff_id)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
+            user.username = username
+            user.save()
+
+            staff_model = Staff.objects.get(admin=staff_id)
+            staff_model.address = address
+            staff_model.save()
+            messages.success(request, "Edits saved successfully")
+            return HttpResponseRedirect("edit_staff/" + staff_id)
+        except:
+            messages.error(request, "Edits were unsuccessful")
+            return HttpResponseRedirect("edit_staff/" + staff_id)
+
+
+def edit_student(request, student_id):
+    student = Students.objects.get(admin=student_id)
+    courses = Courses.objects.all()
+    context ={
+        'student': student,
+        'courses': courses,
+    }
+    return render(request, 'admin_template/edit_student.html', context)
+
+
+def save_student_edits(request):
+    if request.method != "POST":
+        return HttpResponse("Method Not Allowed")
+    else:
+        student_id = request.POST.get("student_id")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        address = request.POST.get("address")
+        session_start = request.POST.get("session_start")
+        session_end = request.POST.get("session_end")
+        course_id = request.POST.get("course")
+        gender = request.POST.get("gender")
+
+        try:
+            user = CustomUser.objects.get(id=student_id)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.username = username
+            user.email = email
+            user.save()
+
+            student = Students.objects.get(admin=student_id)
+            student.address = address
+            student.session_start_year = session_start
+            student.session_end_year = session_end
+            student.gender = gender
+            course = Courses.objects.get(id=course_id)
+            student.course_id = course
+            student.save()
+
+            messages.success(request, "Edits saved successfully")
+            return HttpResponseRedirect("edit_student/" + student_id)
+        except:
+            messages.error(request, "Edits were unsuccessful")
+            return HttpResponseRedirect("edit_student/" + student_id)

@@ -51,7 +51,7 @@
                   <td>{{ staff_member.address }}</td>
                   <td>{{ staff_member.admin.last_login }}</td>
                   <td>{{ staff_member.admin.date_joined }}</td>
-                  <td><a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
+                  <td><a href="{% url 'edit_staff' staff_member.admin.id %}" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>
