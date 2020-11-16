@@ -21,11 +21,15 @@ urlpatterns = [
     path('save_student_edits', save_student_edits, name="save_student_edits"),
     path('add_course', add_course, name="add_course"),
     path('save_course', save_course, name="save_course"),
-    path('add_subject', add_subject, name="add_subject"),
-    path('save_subject', save_subject, name="save_subject"),
     path('manage_staff', manage_staff, name="manage_staff"),
     path('manage_students', manage_students, name="manage_students"),
     path('manage_courses', manage_courses, name="manage_courses"),
     path('manage_subjects', manage_subjects, name="manage_subjects"),
+    path('add_subject', add_subject, name="add_subject"),
+    path('save_subject', save_subject, name="save_subject"),
+    path('edit_subject/<str:subject_id>', edit_subject, name="edit_subject"),
+    path('save_subject_edits', save_subject_edits, name="save_subject_edits"),
+    path('edit_course/<str:course_id>', edit_course, name="edit_course"),
+    path('save_course_edits', save_course_edits, name="save_course_edits"),
     # Custom page URLs
 ]

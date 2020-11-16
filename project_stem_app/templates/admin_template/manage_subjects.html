@@ -45,7 +45,7 @@
                   <td>{{ subject.course_id.course_name }}</td>
                   <td>{{ subject.course_id.id }}</td>
                   <td>{{ subject.staff_id.last_name }}, {{ subject.staff_id.first_name }}</td>
-                  <td><a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
+                  <td><a href="{% url 'edit_subject' subject.id %}" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

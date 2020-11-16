@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Edit Student{% endblock %}
 {% block page_title %}
-Edit Student: {{ student.admin.username }} | ID: {{ student.admin.id }}
+Edit Student - {{ student.admin.username }} | ID: {{ student.admin.id }}
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@ Edit Student: {{ student.admin.username }} | ID: {{ student.admin.id }}
         <!-- general form elements -->
         <div class="card card-primary">
           <!-- form start -->
-          <form role="form" action="{% url 'save_student_edits' %}" method="post">
+          <form role="form" action="{% url 'save_student_edits' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="card-body">
 
@@ -61,6 +61,11 @@ Edit Student: {{ student.admin.username }} | ID: {{ student.admin.id }}
               <div class="form-group">
                 <label>Session End Date</label>
                   <input type="date" class="form-control" placeholder="Session End Date" name="session_end" value="{{ student.session_end_year|date:'Y-m-d' }}">
+              </div>
+              <div class="form-group">
+                <label>Profile Pic</label>
+                <br>
+                <input type="file" name="profile_pic">
               </div>
 
               <div class="form-group">

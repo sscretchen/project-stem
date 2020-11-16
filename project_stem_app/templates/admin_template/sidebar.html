@@ -24,10 +24,18 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item has-treeview menu-open">
-          <a href="{% url 'admin_home' %}" class="nav-link active">
+          <a href="{% url 'admin_home' %}" class="nav-link">
             <i class="fas fa-home"></i>
             <p>
               Home
+            </p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview menu-open">
+          <a href="#" class="nav-link">
+            <i class="fas fa-atom"></i>
+            <p>
+              S.T.E.M Principles
             </p>
           </a>
         </li>
@@ -94,7 +102,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{% url 'manage_subjects' %}" class="nav-link">
+          <a href="{% url 'manage_subjects'  %}" class="nav-link">
             <i class="fas fa-square-root-alt"></i>
             <p>
               Manage Subjects
