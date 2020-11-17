@@ -61,7 +61,7 @@
                   <td>{{ student.course_id.course_name }}</td>
                   <td>{{ student.admin.last_login }}</td>
                   <td>{{ student.admin.date_joined }}</td>
-                  <td><a href="{% url 'edit_student' student.admin.id %}" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
+                  <td><a href="{% url 'edit_student' student_id=student.admin.id %}" class="btn btn-info"><i class="fas fa-edit"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>
