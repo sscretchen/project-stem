@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *
 from .admin_views import *
+from .staff_views import *
+from .student_views import *
 
 urlpatterns = [
     path('', index, name="index"),
@@ -9,6 +11,7 @@ urlpatterns = [
     path('login_user', login_user, name="login_user"),
     path('user_details', UserDetails, name="user_details"),
     path('logout_user', logout_user, name="logout_user"),
+
     # Admin URLs
     path('admin_home', admin_home, name="admin_home"),
     path('add_staff', add_staff, name="add_staff"),
@@ -31,5 +34,12 @@ urlpatterns = [
     path('save_subject_edits', save_subject_edits, name="save_subject_edits"),
     path('edit_course/<str:course_id>', edit_course, name="edit_course"),
     path('save_course_edits', save_course_edits, name="save_course_edits"),
+
+    # Staff URLs
+    path('staff_home', staff_home, name="staff_home"),
+
+    # Student URLs
+    path('student_home', student_home, name="student_home"),
+
     # Custom page URLs
 ]

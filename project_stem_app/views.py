@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.contrib.auth import authenticate, login, logout
 from project_stem_app.EmailBackEnd import EmailBackEnd
 from django.contrib import messages
@@ -27,9 +27,9 @@ def login_user(request):
             if user.user_type == "1":
                 return HttpResponseRedirect('admin_home')
             elif user.user_type == "2":
-                return HttpResponse('Staff login' + str(user.user_type))
+                return HttpResponseRedirect(reverse("staff_home"))
             else:
-                return HttpResponse('Student login' + str(user.user_type))
+                return HttpResponseRedirect(reverse("student_home"))
         else:
             messages.error(request,"Invalid login details")
             return HttpResponseRedirect("/")

@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'project_stem_app.login_middleware.LoginMiddleware'
 ]
 
 ROOT_URLCONF = 'project_stem.urls'
