@@ -1,5 +1,5 @@
 # Project STEM
-What started as a means to help family members with kids who weren’t going to school due to COVID; eventually turned into a fully functional school system for teachers, students and parents/staff. The goal was to create a unique system that focuses on STEM learning. This system will allow for :  
+Once a simple teaching tool; eventually turned into a feature packed school system for Administrators, students and parents/staff. This was created so family members with kids who weren’t going to school due to COVID, could create curriculums based on projected classes. The goal was to create a unique system that focuses on STEM learning. This system will allow for :  
 
 - User authentication for core groups. Admin, staff and students 
 - Calendar views for leave, attendance, and course dates 
