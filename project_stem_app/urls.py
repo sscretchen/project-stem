@@ -40,8 +40,12 @@ urlpatterns = [
     # Staff URLs
     path('staff_home', staff_home, name="staff_home"),
     path('take_attendance', take_attendance, name="take_attendance"),
+    path('update_attendance', update_attendance, name="update_attendance"),
     path('get_students', get_students, name="get_students"),
     path('save_attendance', save_attendance, name="save_attendance"),
+    path('save_attendance_updates', save_attendance_updates, name="save_attendance_updates"),
+    path('get_attendance_dates', get_attendance_dates, name="get_attendance_dates"),
+    path('get_student_attendance', get_student_attendance, name="get_student_attendance"),
 
     # Student URLs
     path('student_home', student_home, name="student_home"),
