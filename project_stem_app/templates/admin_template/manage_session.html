@@ -1,0 +1,53 @@
+{% extends 'admin_template/admin_base.html' %}
+{% load static %}
+{% block title %}Manage Session Year{% endblock %}
+{% block page_title %}Manage Session Year{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <!-- form start -->
+          <form role="form" action="{% url 'save_session_year' %}" method="post">
+            {% csrf_token %}
+            <div class="card-body">
+
+              <div class="form-group">
+                <label>Session Start Year</label>
+                <input type="date" class="form-control" name="session_start" placeholder="Enter session start year">
+              </div>
+              <div class="form-group">
+                <label>Session End Year</label>
+                <input type="date" class="form-control" name="session_end" placeholder="Enter session end year">
+              </div>
+
+              <div class="form-group">
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                {% endif %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary btn-block">Add Session</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

@@ -34,9 +34,14 @@ urlpatterns = [
     path('save_subject_edits', save_subject_edits, name="save_subject_edits"),
     path('edit_course/<str:course_id>', edit_course, name="edit_course"),
     path('save_course_edits', save_course_edits, name="save_course_edits"),
+    path('manage_session', manage_session, name="manage_session"),
+    path('save_session_year', save_session_year, name="save_session_year"),
 
     # Staff URLs
     path('staff_home', staff_home, name="staff_home"),
+    path('take_attendance', take_attendance, name="take_attendance"),
+    path('get_students', get_students, name="get_students"),
+    path('save_attendance', save_attendance, name="save_attendance"),
 
     # Student URLs
     path('student_home', student_home, name="student_home"),

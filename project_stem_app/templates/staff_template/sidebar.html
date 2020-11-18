@@ -42,7 +42,16 @@
           </a>
         </li>
         <hr style="width:90%;text-align:left;margin-top:0" color="white">
-
+        <li class="nav-item">
+          {% url 'take_attendance' as take_attendance %}
+          <a href="{% url 'take_attendance' %}"
+          class="nav-link {% if request.path == take_attendance %} active {% endif  %}">
+            <i class="fas fa-clipboard"></i>
+            <p>
+              Take Attendance
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
