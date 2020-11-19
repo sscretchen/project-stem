@@ -125,7 +125,7 @@ class StaffLeaveReport(models.Model):
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     leave_date = models.CharField(max_length=255)
     leave_message = models.TextField()
-    leave_status = models.BooleanField(default=False)
+    leave_status = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()

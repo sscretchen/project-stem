@@ -46,6 +46,10 @@ urlpatterns = [
     path('save_attendance_updates', save_attendance_updates, name="save_attendance_updates"),
     path('get_attendance_dates', get_attendance_dates, name="get_attendance_dates"),
     path('get_student_attendance', get_student_attendance, name="get_student_attendance"),
+    path('staff_leave_request', staff_leave_request, name="staff_leave_request"),
+    path('save_staff_leave_request', save_staff_leave_request, name="save_staff_leave_request"),
+    path('staff_feedback', staff_feedback, name="staff_feedback"),
+    path('save_staff_feedback', save_staff_feedback, name="save_staff_feedback"),
 
     # Student URLs
     path('student_home', student_home, name="student_home"),

@@ -5,17 +5,18 @@
 {% block content %}
 <div class="login-box">
   <div class="login-logo">
-    Project<b>STEM</b>
+    <h1>Project<b>STEM</b></h1>
   </div>
   <div class="text-center">
-    <img src="{% static 'dist/img/leaves.svg' %}" alt="Logo" style="width:auto;height:50px;">
+    <img src="{% static 'dist/img/leaves.svg' %}" alt="Logo" style="width:auto;height:100px;">
     <br><hr>
+    <h4>Science · Tech · Engineering · Math</h4>
+    <br>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start Learning</p>
-
+      <p class="login-box-msg">Sign in below</p>
       <form action="{% url 'login_user' %}" method="post">
           {% csrf_token %}
         <div class="input-group mb-3">

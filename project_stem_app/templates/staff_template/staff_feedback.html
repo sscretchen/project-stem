@@ -1,0 +1,68 @@
+{% extends 'staff_template/staff_base.html' %}
+{% load static %}
+{% block title %}Send Feedback{% endblock %}
+{% block page_title %}Send Feedback{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <form action="{% url  'save_staff_feedback' %}" method="post">
+            <div class="card-body">
+              {% csrf_token %}
+              <div class="form-group">
+                <label>Whats on your mind?</label>
+                <textarea class="form-control" name="feedback_msg" rows="6" placeholder="Please provide details of your leave request." ></textarea>
+              </div>
+
+              <div class="form-group">
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                {% endif %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary btn-block">Send Feedback</button>
+            </div>
+          </form>
+        </div>
+        <br><br>
+        <div class="card card-primary">
+          <div class="card-header bg-dark">
+            <h3 class="card-title">Request History</h3>
+          </div>
+          <div class="table">
+            <table class="table">
+              <tr>
+                <th>ID</th>
+                <th>Feedback</th>
+                <th>Response</th>
+              </tr>
+              {% for row in feedback_data %}
+              <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.feedback|linebreaks }}</td>
+                {% if row.feedback_reply  %}
+                <td>{{ row.feedback_reply }}</td>
+                {% else %}
+                <td><i>Awaiting a response</i></td>
+                {% endif  %}
+              </tr>
+              {% endfor  %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
