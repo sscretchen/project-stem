@@ -60,7 +60,7 @@ ROOT_URLCONF = 'project_stem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['project_stem_app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +140,14 @@ AUTH_USER_MODEL = "project_stem_app.CustomUser"
 
 # Authentication Backend
 AUTHENTICATION_BACKENDS = ['project_stem_app.EmailBackEnd.EmailBackEnd']
+
+# Email settings
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR,"sent_mail")
+
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_PORT=587
+EMAIL_HOST_USER="projectstem.portfolio@gmail.com"
+EMAIL_HOST_PASSWORD="Project_STEM"
+EMAIL_USE_TLS=True
+DEFAULT_FROM_EMAIL= "Project STEM"

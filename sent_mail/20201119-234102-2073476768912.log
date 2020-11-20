@@ -1,0 +1,23 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: staff1@projectstem.com
+Date: Fri, 20 Nov 2020 04:41:02 -0000
+Message-ID: <160584726280.10440.4280481602300885113@Scretch-Desk.cinci.rr.com>
+
+
+Hello staff1,
+
+To reset your password for Project STEM, please click the link below:
+
+http://localhost:8000/accounts/reset/Mg/adlz4e-db3bc8f83fda1355a9a71a95885a3a71/
+
+If you are having issues with the link, Copy & Paste the link directly into your browser.
+
+Thank you,
+Project STEM Support Team
+
+
+-------------------------------------------------------------------------------

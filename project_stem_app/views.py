@@ -6,11 +6,6 @@ from django.contrib import messages
 import datetime
 
 # Create your views here.
-def index(request):
-    """Main view of app"""
-    return render(request, 'index.html')
-
-
 def ShowLoginPage(request):
     """Login view"""
     return render(request,"login_page.html")
@@ -44,4 +39,4 @@ def UserDetails(request):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect("login")
+    return HttpResponseRedirect("/")

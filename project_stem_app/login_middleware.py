@@ -30,10 +30,10 @@ class LoginMiddleware(MiddlewareMixin):
                 else:
                     return HttpResponseRedirect(reverse("student_home"))
             else:
-                return HttpResponseRedirect(reverse("login"))
+                return HttpResponseRedirect(reverse("show_login"))
 
         else:
-            if request.path == reverse("login") or request.path == reverse("login_user"):
+            if request.path == reverse("show_login") or request.path == reverse("login_user") or module_name == "django.contrib.auth.views":
                 pass
             else:
-                return HttpResponseRedirect(reverse("login"))
+                return HttpResponseRedirect(reverse("show_login"))
