@@ -70,6 +70,8 @@ urlpatterns = [
 
     # Student URLs
     path('student_home', student_views.student_home, name="student_home"),
+    path('student_attendance_view', student_views.student_attendance_view, name="student_attendance_view"),
+    path('student_attendance_report', student_views.student_attendance_report, name="student_attendance_report"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

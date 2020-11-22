@@ -41,8 +41,19 @@
             </p>
           </a>
         </li>
+        <br>
         <hr style="width:90%;text-align:left;margin-top:0" color="white">
-
+        <li class="nav-header"><h6>ATTENDANCE</h6></li>
+        <li class="nav-item">
+          {% url 'student_attendance_view' as student_attendance_view %}
+          <a href="{% url 'student_attendance_view'  %}"
+          class="nav-link {% if request.path == student_attendance_view %} active {% endif  %}">
+            <i class="fas fa-clipboard"></i>
+            <p>
+              View My Attendance
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
