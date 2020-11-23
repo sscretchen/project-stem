@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
-from project_stem_app.models import Staff, CustomUser, Courses, Subjects, Students, SessionYearModel
+from project_stem_app.models import Staff, CustomUser, Courses, Subjects, Students, SessionYearModel, StudentFeedBack, StaffFeedback
 from .forms import AddStudentForm, EditStudentForm
 
 
@@ -412,4 +412,46 @@ def check_for_username(request):
     if user_obj:
         return HttpResponse(True)
     else:
+        return HttpResponse(False)
+
+
+def staff_feedback_response(request):
+    feedback = StaffFeedback.objects.all()
+    context = {
+        'feedback': feedback,
+    }
+    return render(request, 'admin_template/staff_feedback_response.html', context)
+
+
+def student_feedback_response(request):
+    feedback = StudentFeedBack.objects.all()
+    context = {
+        'feedback': feedback,
+    }
+    return render(request, 'admin_template/student_feedback_response.html', context)
+
+
+@csrf_exempt
+def student_feedback_response_replied(request):
+    feedback_id = request.POST.get("id")
+    feedback_message = request.POST.get("message")
+    try:
+        feedback = StudentFeedBack.objects.get(id=feedback_id)
+        feedback.feedback_reply = feedback_message
+        feedback.save()
+        return HttpResponse(True)
+    except:
+        return HttpResponse(False)
+
+
+@csrf_exempt
+def staff_feedback_response_replied(request)        :
+    feedback_id = request.POST.get("id")
+    feedback_message = request.POST.get("message")
+    try:
+        feedback = StaffFeedback.objects.get(id=feedback_id)
+        feedback.feedback_reply = feedback_message
+        feedback.save()
+        return HttpResponse(True)
+    except:
         return HttpResponse(False)

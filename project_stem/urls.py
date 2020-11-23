@@ -55,6 +55,10 @@ urlpatterns = [
     path('save_session_year', admin_views.save_session_year, name="save_session_year"),
     path('check_for_email', admin_views.check_for_email, name="check_for_email"),
     path('check_for_username', admin_views.check_for_username, name="check_for_username"),
+    path('student_feedback_response', admin_views.student_feedback_response, name="student_feedback_response"),
+    path('student_feedback_response_replied', admin_views.student_feedback_response_replied, name="student_feedback_response_replied"),
+    path('staff_feedback_response', admin_views.staff_feedback_response, name="staff_feedback_response"),
+    path('staff_feedback_response_replied', admin_views.staff_feedback_response_replied, name="staff_feedback_response_replied"),
 
     # Staff URLs
     path('staff_home', staff_views.staff_home, name="staff_home"),

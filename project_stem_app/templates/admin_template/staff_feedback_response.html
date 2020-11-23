@@ -1,0 +1,113 @@
+{% extends 'admin_template/admin_base.html' %}
+{% load static %}
+{% block title %}Staff Feedback{% endblock %}
+{% block page_title %}Staff Feedback{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Staff Feedback Data</h3>
+          </div>
+          <div class="table">
+            <table class="table">
+              <tr>
+                <th>ID</th>
+                <th>Staff ID</th>
+                <th>Staff Name</th>
+                <th>Message</th>
+                <th>Date Sent</th>
+                <th>Reply</th>
+              </tr>
+              {% for message in feedback %}
+              <tr>
+                <td>{{ message.id }}</td>
+                <td>{{ message.staff_id.admin.id }}</td>
+                <td>{{ message.staff_id.admin.first_name }} {{ message.staff_id.admin.last_name }}</td>
+                <td>{{ message.feedback }}</td>
+                <td>{{ message.created_at }}</td>
+                <td>
+                  {% if message.feedback_reply == "" %}
+                  <button class="btn btn-success reply_open_modal" data-toggle="modal" data-target="#reply_modal"><i class="fas fa-reply"></i></button>
+                  {% else %}
+                  {{ message.feedback_reply }}
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="reply_modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reply</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Reply to <span id="reply_name"></span></p>
+        <input type="hidden" id="reply_id" name="reply_id">
+        <textarea class="form-control" rows="5" id="reply_message"></textarea>
+        <button id="reply_btn" class="btn btn-info btn-block">Reply</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block custom_js %}
+<script>
+  $(document).ready(function(){
+    $(".reply_open_modal").click(function(){
+      var id=$(this).parents("tr").children("td:eq(0)").text();
+      var name=$(this).parents("tr").children("td:eq(2)").text();
+      $("#reply_id").val(id);
+      $("#reply_name").text(name);
+    });
+
+
+    $(document).on("click","#reply_btn",function(){
+
+      $(this).attr("disabled","disabled")
+      $(this).text("Sending Response...")
+
+      var id=$("#reply_id").val();
+      var message=$("#reply_message").val()
+
+      $.ajax({
+        url:'{% url 'staff_feedback_response_replied' %}',
+        type:'POST',
+        data:{id:id,message:message},
+      })
+      .done(function(response){
+
+        if(response=="True"){
+          alert("Response Sent")
+        }
+        else{
+          alert("Error in Sending Repsonse")
+        }
+        location.reload()
+      })
+      .fail(function(){
+        alert("Error in Sending Repsonse")
+      })
+    });
+  });
+</script>
+{% endblock custom_js %}
