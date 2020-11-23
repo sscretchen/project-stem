@@ -54,6 +54,32 @@
             </p>
           </a>
         </li>
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6>STUDENT LEAVE</h6></li>
+        <li class="nav-item">
+          {% url 'student_leave_request' as student_leave_request %}
+          <a href="{% url 'student_leave_request' %}"
+          class="nav-link {% if request.path == student_leave_request %} active {% endif  %}">
+            <i class="fas fa-door-open"></i>
+            <p>
+              Leave Request
+            </p>
+          </a>
+        </li>
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6>FEEDBACK</h6></li>
+        <li class="nav-item">
+          {% url 'student_feedback' as student_feedback %}
+          <a href="{% url 'student_feedback' %}"
+          class="nav-link {% if request.path == student_feedback %} active {% endif  %}">
+            <i class="fas fa-comments"></i>
+            <p>
+              Send Feedback
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

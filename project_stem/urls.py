@@ -53,6 +53,8 @@ urlpatterns = [
     path('save_course_edits', admin_views.save_course_edits, name="save_course_edits"),
     path('manage_session', admin_views.manage_session, name="manage_session"),
     path('save_session_year', admin_views.save_session_year, name="save_session_year"),
+    path('check_for_email', admin_views.check_for_email, name="check_for_email"),
+    path('check_for_username', admin_views.check_for_username, name="check_for_username"),
 
     # Staff URLs
     path('staff_home', staff_views.staff_home, name="staff_home"),
@@ -72,6 +74,10 @@ urlpatterns = [
     path('student_home', student_views.student_home, name="student_home"),
     path('student_attendance_view', student_views.student_attendance_view, name="student_attendance_view"),
     path('student_attendance_report', student_views.student_attendance_report, name="student_attendance_report"),
+    path('student_leave_request', student_views.student_leave_request, name="student_leave_request"),
+    path('save_student_leave_request', student_views.save_student_leave_request, name="save_student_leave_request"),
+    path('student_feedback', student_views.student_feedback, name="student_feedback"),
+    path('save_student_feedback', student_views.save_student_feedback, name="save_student_feedback"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
