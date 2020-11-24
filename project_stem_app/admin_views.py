@@ -1,12 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
-from project_stem_app.models import Staff, CustomUser, Courses, Subjects, Students, SessionYearModel, StudentFeedBack, StaffFeedback
+from project_stem_app.models import Staff, CustomUser, Courses, Subjects, Students, SessionYearModel, StudentFeedBack, StaffFeedback, StudentLeaveReport, StaffLeaveReport, Attendance, AttendanceReport
 from .forms import AddStudentForm, EditStudentForm
+import json
 
 
 def admin_home(request):
@@ -455,3 +456,94 @@ def staff_feedback_response_replied(request)        :
         return HttpResponse(True)
     except:
         return HttpResponse(False)
+
+
+def student_leave(request):
+    leave = StudentLeaveReport.objects.all()
+    context = {
+        'leave': leave,
+    }
+    return render(request, "admin_template/student_leave.html", context)
+
+
+def approve_student_leave(request, leave_id):
+    leave = StudentLeaveReport.objects.get(id=leave_id)
+    leave.leave_status = 1
+    leave.save()
+    return HttpResponseRedirect(reverse("student_leave"))
+
+
+def deny_student_leave(request, leave_id):
+    leave = StudentLeaveReport.objects.get(id=leave_id)
+    leave.leave_status = 2
+    leave.save()
+    return HttpResponseRedirect(reverse("student_leave"))
+
+
+def staff_leave(request):
+    leave = StaffLeaveReport.objects.all()
+    context = {
+        'leave': leave,
+    }
+    return render(request, "admin_template/staff_leave.html", context)
+
+
+def approve_staff_leave(request, leave_id):
+    leave = StaffLeaveReport.objects.get(id=leave_id)
+    leave.leave_status = 1
+    leave.save()
+    return HttpResponseRedirect(reverse("staff_leave"))
+
+
+def deny_staff_leave(request, leave_id):
+    leave = StaffLeaveReport.objects.get(id=leave_id)
+    leave.leave_status = 2
+    leave.save()
+    return HttpResponseRedirect(reverse("staff_leave"))
+
+
+def admin_attendance_view(request):
+    subjects = Subjects.objects.all()
+    session_year_id = SessionYearModel.object.all()
+    context = {
+        'subjects': subjects,
+        'session_year_id': session_year_id,
+    }
+    return render(request, "admin_template/admin_attendance_view.html", context)
+
+
+@csrf_exempt
+def admin_get_attendance_dates(request):
+    subject = request.POST.get("subject")
+    session_year_id = request.POST.get("session_year_id")
+    subject_obj = Subjects.objects.get(id=subject)
+    session_year_obj = SessionYearModel.object.get(id=session_year_id)
+    attendance = Attendance.objects.filter(subject_id=subject_obj, session_year_id=session_year_obj)
+    attendance_obj = []
+    for attendance_single in attendance:
+        data = {
+            'id': attendance_single.id,
+            'attendance_date': str(attendance_single.attendance_date),
+            'session_year_id': attendance_single.session_year_id.id
+        }
+        attendance_obj.append(data)
+    return JsonResponse(json.dumps(attendance_obj), safe=False)
+
+
+
+@csrf_exempt
+def admin_get_attendance_student(request):
+    attendance_date = request.POST.get("attendance_date")
+    attendance = Attendance.objects.get(id=attendance_date)
+
+    attendance_data = AttendanceReport.objects.filter(attendance_id=attendance)
+    list_data = []
+
+    for student in attendance_data:
+        data_small = {
+            "id":student.student_id.admin.id,
+            "name":student.student_id.admin.first_name+" "+student.student_id.admin.last_name,
+            "status":student.status
+            }
+        list_data.append(data_small)
+    return JsonResponse(json.dumps(list_data),content_type="application/json",safe=False)

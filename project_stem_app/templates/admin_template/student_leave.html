@@ -1,0 +1,56 @@
+{% extends 'admin_template/admin_base.html' %}
+{% load static %}
+{% block title %}Student Leave{% endblock %}
+{% block page_title %}Student Leave{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Student Leave Data</h3>
+          </div>
+          <div class="table">
+            <table class="table">
+              <tr>
+                <th>ID</th>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Leave Date</th>
+                <th>Leave Message</th>
+                <th>Request Date</th>
+                <th>Reply</th>
+              </tr>
+              {% for each_request in leave %}
+              <tr>
+                <td>{{ each_request.id }}</td>
+                <td>{{ each_request.student_id.admin.id }}</td>
+                <td>{{ each_request.student_id.admin.first_name }}
+                  {{ each_request.student_id.admin.last_name }}</td>
+                <td>{{ each_request.leave_date }}</td>
+                <td>{{ each_request.leave_message }}</td>
+                <td>{{ each_request.created_at }}</td>
+                <td>
+                  {% if each_request.leave_status == 0 %}
+                  <a href="{% url 'approve_student_leave' leave_id=each_request.id %}" class="btn btn-success" >Approve</a>
+                  <a class="btn btn-danger" href="{% url 'deny_student_leave' leave_id=each_request.id %}">Deny</a>
+                  {% elif each_request.leave_status == 1  %}
+                   <button class="btn btn-warning" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Approved</button>
+                  {% else %}
+                  <button class="btn btn-danger" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Denied</button>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

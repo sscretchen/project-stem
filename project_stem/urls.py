@@ -59,6 +59,15 @@ urlpatterns = [
     path('student_feedback_response_replied', admin_views.student_feedback_response_replied, name="student_feedback_response_replied"),
     path('staff_feedback_response', admin_views.staff_feedback_response, name="staff_feedback_response"),
     path('staff_feedback_response_replied', admin_views.staff_feedback_response_replied, name="staff_feedback_response_replied"),
+    path('student_leave', admin_views.student_leave, name="student_leave"),
+    path('approve_student_leave/<str:leave_id>', admin_views.approve_student_leave, name="approve_student_leave"),
+    path('deny_student_leave/<str:leave_id>', admin_views.deny_student_leave, name="deny_student_leave"),
+    path('staff_leave', admin_views.staff_leave, name="staff_leave"),
+    path('approve_staff_leave/<str:leave_id>', admin_views.approve_staff_leave, name="approve_staff_leave"),
+    path('deny_staff_leave/<str:leave_id>', admin_views.deny_staff_leave, name="deny_staff_leave"),
+    path('admin_attendance_view', admin_views.admin_attendance_view, name="admin_attendance_view"),
+    path('admin_get_attendance_dates', admin_views.admin_get_attendance_dates, name="admin_get_attendance_dates"),
+    path('admin_get_attendance_student', admin_views.admin_get_attendance_student, name="admin_get_attendance_student"),
 
     # Staff URLs
     path('staff_home', staff_views.staff_home, name="staff_home"),

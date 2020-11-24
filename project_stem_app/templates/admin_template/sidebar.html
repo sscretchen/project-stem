@@ -176,7 +176,8 @@
 <hr style="width:90%;text-align:left;margin-top:0" color="white">
 <li class="nav-header"><h6>LEAVE REPORTS</h6></li>
 <li class="nav-item">
-  <a href="#" class="nav-link">
+  {% url 'staff_leave' as staff_leave %}
+  <a href="{% url 'staff_leave' %}" class="nav-link {% if request.path == staff_leave %} active {% endif  %}">
     <i class="fas fa-door-open"></i>
     <p>
       Staff Leave
@@ -184,7 +185,8 @@
   </a>
 </li>
 <li class="nav-item">
-  <a href="#" class="nav-link">
+  {% url 'student_leave' as student_leave %}
+  <a href="{% url 'student_leave' %}" class="nav-link {% if request.path == student_leave %} active {% endif  %}">
     <i class="fas fa-door-open"></i>
     <p>
       Student Leave
@@ -195,8 +197,8 @@
 <hr style="width:90%;text-align:left;margin-top:0" color="white">
 <li class="nav-header"><h6>ATTENDANCE</h6></li>
 <li class="nav-item">
-  {% url 'student_feedback_response' as student_feedback_response %}
-  <a href="{% url 'student_feedback_response' %}" class="nav-link {% if request.path == student_feedback_response %} active {% endif  %}">
+  {% url 'admin_attendance_view' as admin_attendance_view %}
+  <a href="{% url 'admin_attendance_view' %}" class="nav-link {% if request.path == admin_attendance_view %} active {% endif  %}">
     <i class="fas fa-clipboard"></i>
     <p>
       View Attendance
