@@ -7,7 +7,40 @@ import datetime
 
 
 def student_home(request):
-    return render(request, 'student_template/home.html')
+    student_obj = Students.objects.get(admin=request.user.id)
+    total_attendance = AttendanceReport.objects.filter(student_id=student_obj).count()
+    present_attendance = AttendanceReport.objects.filter(student_id=student_obj, status=True).count()
+    absent_attendance = AttendanceReport.objects.filter(student_id=student_obj, status=False).count()
+    course = Courses.objects.get(id=student_obj.course_id.id)
+    subjects = Subjects.objects.filter(course_id=course).count()
+
+    subject_name = []
+    present_data = []
+    absent_data = []
+    subject_data = Subjects.objects.filter(course_id=student_obj.course_id)
+    for subject in subject_data:
+        attendance = Attendance.objects.filter(subject_id=subject.id)
+        present_attendance_count = AttendanceReport.objects.filter(attendance_id__in=attendance, status=True, student_id=student_obj.id).count()
+        absent_attendance_count = AttendanceReport.objects.filter(attendance_id__in=attendance, status=False, student_id=student_obj.id).count()
+        subject_name.append(subject.subject_name)
+        present_data.append(present_attendance_count)
+        absent_data.append(absent_attendance_count)
+
+
+
+    context = {
+        'student_obj': student_obj,
+        'total_attendance': total_attendance,
+        'present_attendance': present_attendance,
+        'absent_attendance': absent_attendance,
+        'course': course,
+        'subjects': subjects,
+        'subject_data': subject_data,
+        'data_name': subject_name,
+        'data1': present_data,
+        'data2': absent_data,
+    }
+    return render(request, 'student_template/home.html', context)
 
 
 def student_attendance_view(request):
