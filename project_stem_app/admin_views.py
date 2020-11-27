@@ -12,7 +12,73 @@ import json
 
 def admin_home(request):
     """Main view of admins home page"""
-    return render(request, 'admin_template/home.html')
+    student_count = Students.objects.all().count()
+    staff_count = Staff.objects.all().count()
+    course_count = Courses.objects.all().count()
+    subject_count = Subjects.objects.all().count()
+
+    all_courses = Courses.objects.all()
+    course_name_list = []
+    subject_count_list = []
+    student_to_course_count = []
+    for course in all_courses:
+        subjects = Subjects.objects.filter(course_id=course.id).count()
+        students = Students.objects.filter(course_id=course.id).count()
+        course_name_list.append(course.course_name)
+        subject_count_list.append(subjects)
+        student_to_course_count.append(students)
+
+    all_subjects = Subjects.objects.all()
+    subject_list = []
+    student_to_subject_count = []
+    for subject in all_subjects:
+        course = Courses.objects.get(id=subject.course_id.id)
+        student_count = Students.objects.filter(course_id=course.id).count()
+        subject_list.append(subject.subject_name)
+        student_to_subject_count.append(student_count)
+
+    staff_obj = Staff.objects.all()
+    present_attendance_list_staff = []
+    absent_attendance_list_staff = []
+    list_of_staff = []
+    for staff in staff_obj:
+        subject_ids = Subjects.objects.filter(staff_id=staff.admin.id)
+        attendance = Attendance.objects.filter(subject_id__in=subject_ids).count()
+        leave = StaffLeaveReport.objects.filter(staff_id=staff.id, leave_status=1).count()
+        present_attendance_list_staff.append(attendance)
+        absent_attendance_list_staff.append(leave)
+        list_of_staff.append(staff.admin.username)
+
+    students = Students.objects.all()
+    present_attendance_list_students = []
+    absent_attendance_list_students = []
+    list_of_students = []
+    for student in students:
+        attendance = AttendanceReport.objects.filter(student_id=student.id, status=True).count()
+        absent = AttendanceReport.objects.filter(student_id=student.id, status=False).count()
+        leave = StudentLeaveReport.objects.filter(student_id=student.id, leave_status=1).count()
+        present_attendance_list_students.append(attendance)
+        absent_attendance_list_students.append(leave+absent)
+        list_of_students.append(student.admin.username)
+
+    context = {
+        'student_count': student_count,
+        'staff_count': staff_count,
+        'present_attendance_list_staff': present_attendance_list_staff,
+        'absent_attendance_list_staff': absent_attendance_list_staff,
+        'present_attendance_list_students': present_attendance_list_students,
+        'absent_attendance_list_students': absent_attendance_list_students,
+        'course_count': course_count,
+        'list_of_staff': list_of_staff,
+        'list_of_students': list_of_students,
+        'subject_count': subject_count,
+        'course_name_list': course_name_list,
+        'subject_count_list': subject_count_list,
+        'subject_list': subject_list,
+        'student_to_course_count': student_to_course_count,
+        'student_to_subject_count': student_to_subject_count,
+    }
+    return render(request, 'admin_template/home.html', context)
 
 
 def add_staff(request):
