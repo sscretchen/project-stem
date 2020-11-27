@@ -2,13 +2,62 @@ from django.shortcuts import render, reverse
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
-from .models import Subjects, SessionYearModel, Students, AttendanceReport, Attendance, StaffLeaveReport, Staff, StaffFeedback, CustomUser
+from .models import Subjects, SessionYearModel, Students, AttendanceReport, Attendance, StaffLeaveReport, Staff, StaffFeedback, CustomUser, Courses
 from django.core import serializers
 import json
 
 
 def staff_home(request):
-    return render(request, 'staff_template/home.html')
+    subjects = Subjects.objects.filter(staff_id=request.user.id)
+    course_id_list = []
+    for subject in subjects:
+        course = Courses.objects.get(id=subject.course_id.id)
+        course_id_list.append(course.id)
+
+    final_course = []
+    for course_id in course_id_list:
+        if course_id not in final_course:
+            final_course.append(course_id)
+
+    students_count = Students.objects.filter(course_id__in=final_course).count()
+    attendance_count = Attendance.objects.filter(subject_id__in=subjects).count()
+    staff = Staff.objects.get(admin=request.user.id)
+    leave = StaffLeaveReport.objects.filter(staff_id=staff.id, leave_status=1).count()
+    subject_count = subjects.count()
+
+    subject_list = []
+    attendance_list = []
+    for subject in subjects:
+        attendance_count1 = Attendance.objects.filter(subject_id=subject.id).count()
+        subject_list.append(subject.subject_name)
+        attendance_list.append(attendance_count1)
+
+    students_attendance = Students.objects.filter(course_id__in=final_course)
+    student_list = []
+    student_list_present_attendance = []
+    student_list_absent_attendance = []
+    for student in students_attendance:
+        present_attendance_count = AttendanceReport.objects.filter(status=True, student_id=student.id).count()
+        absent_attendance_count = AttendanceReport.objects.filter(status=False, student_id=student.id).count()
+        student_list.append(student.admin.username)
+        student_list_present_attendance.append(present_attendance_count)
+        student_list_absent_attendance.append(absent_attendance_count)
+
+    context = {
+        'students_count': students_count,
+        'attendance_count': attendance_count,
+        'staff': staff,
+        'leave': leave,
+        'subjects': subjects,
+        'subject_count': subject_count,
+        'subject_list': subject_list,
+        'attendance_list': attendance_list,
+        'student_list': student_list,
+        'attendance_count1': attendance_count1,
+        'present_list': student_list_present_attendance,
+        'absent_list': student_list_absent_attendance,
+    }
+    return render(request, 'staff_template/home.html', context)
 
 
 def take_attendance(request):
