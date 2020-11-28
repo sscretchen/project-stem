@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +29,7 @@ SECRET_KEY = 'enzvenzf5+z!4+$40s&inl&6=cmo=9z#=g%^0k*it7!t=0kwou'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["project-stem.herokuapp.com"]
 
 
 # Application definition
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,14 +85,14 @@ WSGI_APPLICATION = 'project_stem.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project_stem',
-        'USER': 'project_stem',
-        'PASSWORD': 'project_stem_password',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'project_stem',
+        # 'USER': 'project_stem',
+        # 'PASSWORD': 'project_stem_password',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306'
     }
 }
 
@@ -130,6 +134,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 # Media Files
 MEDIA_URL = "/media/"
@@ -145,9 +151,14 @@ AUTHENTICATION_BACKENDS = ['project_stem_app.EmailBackEnd.EmailBackEnd']
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = os.path.join(BASE_DIR,"sent_mail")
 
-EMAIL_HOST="smtp.gmail.com"
-EMAIL_PORT=587
-EMAIL_HOST_USER="projectstem.portfolio@gmail.com"
-EMAIL_HOST_PASSWORD="Project_STEM"
-EMAIL_USE_TLS=True
-DEFAULT_FROM_EMAIL= "Project STEM"
+# EMAIL_HOST="smtp.gmail.com"
+# EMAIL_PORT=587
+# EMAIL_HOST_USER="projectstem.portfolio@gmail.com"
+# EMAIL_HOST_PASSWORD="Project_STEM"
+# EMAIL_USE_TLS=True
+# DEFAULT_FROM_EMAIL= "Project STEM"
+
+# Heroku settings
+django_heroku.settings(locals())
+prod_db=dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)

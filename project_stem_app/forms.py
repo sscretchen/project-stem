@@ -17,18 +17,24 @@ class AddStudentForm(forms.Form):
     widget=forms.TextInput(attrs={"class":"form-control","autocomplete":"off"}))
     address = forms.CharField(label="Address", max_length=50,
     widget=forms.TextInput(attrs={"class":"form-control"}))
-    course_list = []
-    courses = Courses.objects.all()
-    for course in courses:
-        small_course = (course.id, course.course_name)
-        course_list.append(small_course)
-    # course_list = []
 
+    try:
+        course_list = []
+        courses = Courses.objects.all()
+        for course in courses:
+            small_course = (course.id, course.course_name)
+            course_list.append(small_course)
+    except:
+        course_list = []
+        
     session_list = []
-    sessions = SessionYearModel.object.all()
-    for each_session in sessions:
-        small_session = (each_session.id, str(each_session.session_start_year) + "   to   " + str(each_session.session_end_year))
-        session_list.append(small_session)
+    try:
+        sessions = SessionYearModel.object.all()
+        for each_session in sessions:
+            small_session = (each_session.id, str(each_session.session_start_year) + "   to   " + str(each_session.session_end_year))
+            session_list.append(small_session)
+    except:
+        session_list = []
 
     gender_select = (
         ("Male","Male"),

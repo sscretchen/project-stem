@@ -1,0 +1,1 @@
+web: gunicorn project_stem.wsgi --log-file -
