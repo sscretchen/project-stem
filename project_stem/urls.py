@@ -86,6 +86,8 @@ urlpatterns = [
     path('save_staff_feedback', staff_views.save_staff_feedback, name="save_staff_feedback"),
     path('staff_profile', staff_views.staff_profile, name="staff_profile"),
     path('save_staff_profile_edits', staff_views.save_staff_profile_edits, name="save_staff_profile_edits"),
+    path('add_result', staff_views.add_result, name="add_result"),
+    path('save_student_result', staff_views.save_student_result, name="save_student_result"),
 
     # Student URLs
     path('student_home', student_views.student_home, name="student_home"),

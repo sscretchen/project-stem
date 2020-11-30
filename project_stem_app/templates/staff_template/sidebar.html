@@ -43,6 +43,19 @@
         </li>
         <br>
         <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6>RESULTS</h6></li>
+        <li class="nav-item">
+          {% url 'add_result' as add_result %}
+          <a href="{% url 'add_result' %}"
+          class="nav-link {% if request.path == add_result %} active {% endif  %}">
+            <i class="fas fa-pencil-ruler"></i>
+            <p>
+              Add Results
+            </p>
+          </a>
+        </li>
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">                
         <li class="nav-header"><h6>ATTENDANCE</h6></li>
         <li class="nav-item">
           {% url 'take_attendance' as take_attendance %}
