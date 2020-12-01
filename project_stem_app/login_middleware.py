@@ -16,7 +16,7 @@ class LoginMiddleware(MiddlewareMixin):
                 else:
                     return HttpResponseRedirect(reverse("admin_home"))
             elif user.user_type == "2":
-                if module_name == "project_stem_app.staff_views":
+                if module_name == "project_stem_app.staff_views" or module_name == "project_stem_app.edit_results_views":
                     pass
                 elif module_name == "project_stem_app.views":
                     pass

@@ -54,8 +54,18 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          {% url 'edit_student_result' as edit_student_result %}
+          <a href="{% url 'edit_student_result' %}"
+          class="nav-link {% if request.path == edit_student_result %} active {% endif  %}">
+            <i class="fas fa-edit"></i>
+            <p>
+              Edit Results
+            </p>
+          </a>
+        </li>
         <br>
-        <hr style="width:90%;text-align:left;margin-top:0" color="white">                
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
         <li class="nav-header"><h6>ATTENDANCE</h6></li>
         <li class="nav-item">
           {% url 'take_attendance' as take_attendance %}

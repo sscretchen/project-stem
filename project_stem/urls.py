@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from project_stem import settings
-from project_stem_app import views, admin_views, staff_views, student_views
+from project_stem_app import views, admin_views, staff_views, student_views, edit_results_views
 
 urlpatterns = [
     # path('', include('project_stem_app.urls')),
@@ -88,6 +88,9 @@ urlpatterns = [
     path('save_staff_profile_edits', staff_views.save_staff_profile_edits, name="save_staff_profile_edits"),
     path('add_result', staff_views.add_result, name="add_result"),
     path('save_student_result', staff_views.save_student_result, name="save_student_result"),
+    path('edit_student_result', edit_results_views.EditResult.as_view(), name="edit_student_result"),
+    path('save_student_result', staff_views.save_student_result, name="save_student_result"),
+    path('fetch_student_results', staff_views.fetch_student_results, name="fetch_student_results"),
 
     # Student URLs
     path('student_home', student_views.student_home, name="student_home"),
