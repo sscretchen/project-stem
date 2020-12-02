@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'enzvenzf5+z!4+$40s&inl&6=cmo=9z#=g%^0k*it7!t=0kwou'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["projectstemscretch.pythonanywhere.com"]
 
 
 # Application definition
@@ -152,3 +152,8 @@ EMAIL_HOST_USER="projectstem.portfolio@gmail.com"
 EMAIL_HOST_PASSWORD="Project_STEM"
 EMAIL_USE_TLS=True
 DEFAULT_FROM_EMAIL= "Project STEM"
+
+try:
+    from .local_settings import *
+except ImportError:
+    print("Looks like no local file exists. You must be in production")
