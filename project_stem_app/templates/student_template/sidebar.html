@@ -56,6 +56,19 @@
         </li>
         <br>
         <hr style="width:90%;text-align:left;margin-top:0" color="white">
+        <li class="nav-header"><h6>RESULTS</h6></li>
+        <li class="nav-item">
+          {% url 'view_results' as view_results %}
+          <a href="{% url 'view_results'  %}"
+          class="nav-link {% if request.path == view_results %} active {% endif  %}">
+            <i class="fas fa-pen"></i>
+            <p>
+              View My Grades
+            </p>
+          </a>
+        </li>
+        <br>
+        <hr style="width:90%;text-align:left;margin-top:0" color="white">
         <li class="nav-header"><h6>STUDENT LEAVE</h6></li>
         <li class="nav-item">
           {% url 'student_leave_request' as student_leave_request %}

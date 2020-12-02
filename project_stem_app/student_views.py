@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
-from project_stem_app.models import Subjects, Students, Courses, CustomUser, Attendance, AttendanceReport, StudentLeaveReport, StudentFeedBack
+from project_stem_app.models import Subjects, Students, Courses, CustomUser, Attendance, AttendanceReport, StudentLeaveReport, StudentFeedBack, StudentResult
 import datetime
 
 
@@ -170,3 +170,13 @@ def save_student_profile_edits(request):
         except:
             messages.error(request, "Failed to Update Profile")
             return HttpResponseRedirect(reverse("student_profile"))
+
+
+def view_results(request):
+        student = Students.objects.get(admin=request.user.id)
+        students_results = StudentResult.objects.filter(student_id=student.id)
+        context = {
+            'student': student,
+            'students_results': students_results,
+        }
+        return render(request, "student_template/view_results.html", context)

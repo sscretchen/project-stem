@@ -12,7 +12,7 @@ import json
 
 def admin_home(request):
     """Main view of admins home page"""
-    student_count = Students.objects.all().count()
+    student_count1 = Students.objects.all().count()
     staff_count = Staff.objects.all().count()
     course_count = Courses.objects.all().count()
     subject_count = Subjects.objects.all().count()
@@ -62,7 +62,7 @@ def admin_home(request):
         list_of_students.append(student.admin.username)
 
     context = {
-        'student_count': student_count,
+        'student_count': student_count1,
         'staff_count': staff_count,
         'present_attendance_list_staff': present_attendance_list_staff,
         'absent_attendance_list_staff': absent_attendance_list_staff,

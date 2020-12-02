@@ -102,6 +102,7 @@ urlpatterns = [
     path('save_student_feedback', student_views.save_student_feedback, name="save_student_feedback"),
     path('student_profile', student_views.student_profile, name="student_profile"),
     path('save_student_profile_edits', student_views.save_student_profile_edits, name="save_student_profile_edits"),
+    path('view_results', student_views.view_results, name="view_results"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

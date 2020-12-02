@@ -1,0 +1,53 @@
+{% extends 'student_template/student_base.html' %}
+{% load static %}
+{% block title %}My Results{% endblock %}
+{% block page_title %}My Results{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card card-primary">
+          <div class="card-header bg-dark">
+            <h3 class="card-title">Results</h3>
+          </div>
+          <div class="table">
+            <table class="table">
+              <tr>
+                <th>ID</th>
+                <th>Subject</th>
+                <th>Assignment Marks</th>
+                <th>Exam Marks</th>
+                <th>Status</th>
+              </tr>
+              {% for student in students_results %}
+              <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.subject_id.subject_name }}</td>
+                <td>{{ student.subject_assignment }}</td>
+                <td>{{ student.subject_exam }}</td>
+                <td>
+                  {% if student.subject_exam <= 59 %}
+                  <div class="alert alert-danger">Fail - F</div>
+                  {% elif student.subject_exam <= 69 %}
+                  <div class="alert alert-warning">Fail - D</div>
+                  {% elif student.subject_exam <= 79 %}
+                  <div class="alert alert-warning">Study Needed - C</div>
+                  {% elif student.subject_exam <= 89 %}
+                  <div class="alert alert-success">Pass - B</div>
+                  {% else %}
+                  <div class="alert alert-success">Pass - A</div>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor  %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
