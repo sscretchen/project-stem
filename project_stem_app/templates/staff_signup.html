@@ -1,6 +1,6 @@
 {% extends 'login_base.html' %}
 {% load static %}
-{% block title %}Login{% endblock %}
+{% block title %}Staff Signup{% endblock %}
 
 {% block content %}
 <div class="login-box">
@@ -13,17 +13,24 @@
     <h4>Science · Tech · Engineering · Math</h4>
     <br>
   </div>
-  <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in below</p>
-      <form action="{% url 'login_user' %}" method="post">
+      <p class="login-box-msg">Staff Sign Up</p>
+      <form action="{% url 'do_staff_signup' %}" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email" name="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Username" name="username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-at"></span>
             </div>
           </div>
         </div>
@@ -35,18 +42,17 @@
             </div>
           </div>
         </div>
-        <div class="container-fluid mb-3">
-          <div class="g-recaptcha" data-sitekey="6LdRjvUZAAAAAL3DvRSxEeeSNnrDDZRmPzg5AC_X"></div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Address" name="address">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map"></span>
+            </div>
+          </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <br><br>
-          <div class="col-12 text-center">
-            Forgot your password?<a href="{% url 'password_reset' %}">
-              Reset Password
-            </a>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
           {% if messages %}
           <div class="col-12">
@@ -54,36 +60,16 @@
             {% if message.tags == 'error' %}
             <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
             {% endif %}
-            {% if message.tags == 'success' %}
-            <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
-            {% endif %}
             {% endfor %}
           </div>
           {% endif %}
         </div>
-        <hr>
-        <p class="login-box-msg">New User Signup</p>
-        <a href="{% url 'admin_signup' %}">
-          <div class="col-12 text-center alert alert-info">
-            Admin Signup
-          </div>
-        </a>
-        <a href="{% url 'staff_signup' %}">
-          <div class="col-12 text-center alert alert-info">
-            Staff Signup
-          </div>
-        </a>
-        <a href="{% url 'student_signup' %}">
-          <div class="col-12 text-center alert alert-info">
-            Student Signup
-          </div>
-        </a>
       </form>
-
+      <div class="text-center">
+        <p>Already have an account?<a href="{% url 'show_login' %}"> Login</a></p>
+      </div>
     </div>
-    <!-- /.login-card-body -->
   </div>
 </div>
-<!-- /.login-box -->
 
-{% endblock %}
+    {% endblock %}

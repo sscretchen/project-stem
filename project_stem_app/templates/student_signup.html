@@ -1,0 +1,145 @@
+{% extends 'login_base.html' %}
+{% load static %}
+{% block title %}Student Signup{% endblock %}
+
+{% block content %}
+<div class="login-box">
+  <div class="login-logo">
+    <h1>Project<b>STEM</b></h1>
+  </div>
+  <div class="text-center">
+    <img src="{% static 'dist/img/leaves.svg' %}" alt="Logo" style="width:auto;height:100px;">
+    <br><hr>
+    <h4>Science · Tech · Engineering · Math</h4>
+    <br>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Student Sign Up</p>
+      <form action="{% url 'do_student_signup' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" name="email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Username" name="username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-at"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="First Name" name="first_name">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-signature"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Last Name" name="last_name">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-signature"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Address" name="address">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map"></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h6>Choose Gender</h6>
+        <div class="input-group mb-3">
+          <select class="form-control" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h6>Course</h6>
+        <div class="input-group mb-3">
+          <select class="form-control" name="course">
+            {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.course_name }}</option>
+            {% endfor %}
+          </select>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-sticky-note"></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h6>Session</h6>
+        <div class="input-group mb-3">
+          <select class="form-control" name="session_year">
+            {% for year in session_years %}
+            <option value="{{ year.id }}">
+              {{ year.session_start_year }} - {{ year.session_end_year }}
+            </option>
+            {% endfor %}
+          </select>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-calendar"></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h6>Profile Pic</h6>
+        <div class="input-group mb-3">
+          <input type="file" name="profile_pic">
+        </div>
+
+
+
+
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          {% if messages %}
+          <div class="col-12">
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </form>
+      <div class="text-center">
+        <p>Already have an account?<a href="{% url 'show_login' %}"> Login</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.login-box -->
+
+{% endblock %}
